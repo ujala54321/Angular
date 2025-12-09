@@ -1,0 +1,9 @@
+<div class="alert" [ngClass]="{'alert-success': alertType =='Success', 'alert-danger': alertType =='Error','alert-warning':alertType =='Warning'}">
+  <strong>{{alertType}}!</strong>{{alertMessage}}
+</div>
+<!-- <div class="alert alert-danger">
+  <strong>Error!</strong> Indicates a successful or positive action.
+</div>
+<div class="alert alert-warning">
+  <strong>Warning!</strong> Indicates a successful or positive action.
+</div> -->

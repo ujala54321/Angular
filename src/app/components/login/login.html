@@ -1,0 +1,41 @@
+<div class="container-fluid">
+    <div class="row min-vh-100 d-flex justify-content-center align-items-center">
+        <div class="col-md-4">
+            <div class="card shadow-lg animate_animated animate_fadeIn">
+                <div class="card-body p-5">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-user-circle fa-3x text-primary mb-3 animate_animated animate_bounce"></i>
+                        <h2 class="fw-bold">Welcome Back!</h2>
+                        <p class="text-muted">Please sign in to continue</p>
+                    </div>
+                    <form>
+                        <div class="form-floating mb-3 animate_animated animatefadeInLeft animate_delay-1s">
+                            <input type="email" [(ngModel)]="loginObj.email" name="email" class="form-control" id="emailInput" placeholder="name@example.com">
+                            <label for="emailInput">Email address</label>
+                        </div>
+                        <div class="form-floating mb-4 animate_animated animatefadeInRight animate_delay-1s">
+                            <input type="password"  [(ngModel)]="loginObj.password" name="password" class="form-control" id="passwordInput" placeholder="Password">
+                            <label for="passwordInput">Password</label>
+                        </div>
+                        <div class="d-flex justify-content-between mb-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="rememberMe">
+                                <label class="form-check-label" for="rememberMe">
+                                    Remember me
+                                </label>
+                            </div>
+                            <a href="#" class="text-primary text-decoration-none">Forgot password?</a>
+                        </div>
+                        <button (click)="onLogin()" class="btn btn-primary w-100 py-3 mb-4 animate_animated animatepulse animate_infinite">
+                            Sign In
+                        </button>
+                        <p class="text-center mb-0">
+                            Don't have an account? <a href="#" class="text-primary text-decoration-none">Sign Up</a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

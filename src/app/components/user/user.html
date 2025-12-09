@@ -1,0 +1,103 @@
+
+<div class="container">
+
+  <app-tabs [tabList]="['List View','Form View']" (onTabChange)="onSelectTab($event)"></app-tabs>
+  <h2 class="mb-4 text-center">User CRUD Operation</h2>
+  <app-alert [alertType]="'Success'" [alertMessage]="'Welcome Use Page'" ></app-alert>
+
+    <app-alert [alertType]="'Error'" [alertMessage]="'Welcome Use Page'" ></app-alert>
+  <div class="row g-4">
+    <!-- Form Section -->
+
+
+    <!-- Card-based User Display -->
+     @if(selectedViewName =='List View') {
+       <div class="col-12">
+      <div class="card  shadow mb-3">
+        <div class="card-header bg-warning">
+          <h5 class="mb-0">User List (Card View)</h5>
+        </div>
+        <div class="card-body">
+          <div class="row g-3">
+            <!-- User Card 1 -->
+            @for (item of userList$ |async; track $index) {
+            <div class="col-md-6">
+              <div class="card user-card shadow-sm border border-dark">
+                <div class="card-body">
+                  <h5 class="card-title">{{item.fullName}}</h5>
+                  <p class="card-text mb-1"><strong appHighlight>Email:</strong> {{item.emailId}}</p>
+                  <p class="card-text mb-1"><strong appHighlight>Mobile:</strong> {{item.mobileNo}}</p>
+                  <p class="card-text mb-3"><strong appHighlight>Password:</strong> {{item.password}}</p>
+                  <button class="btn btn-sm btn-success me-2" (click)="onEdit(item)">Edit</button>
+                  <button class="btn btn-sm btn-danger">Delete</button>
+                </div>
+              </div>
+            </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+     } @else {
+       <div class="col-12">
+      <div class="card shadow">
+        <div class="card-header bg-warning">
+          <h5 class="mb-0">User Form</h5>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="userForm">
+            <div class="mb-3">
+              <label for="fullName" class="form-label">Full Name</label>
+              <input type="text" formControlName="fullName" class="form-control" id="fullName"
+                placeholder="Enter Full Name">
+              @if (userForm.controls['fullName'].touched || userForm.controls['fullName'].dirty || isFormSubmited) {
+              <div class="text-danger">
+                <!-- -{{titleTem.errors| json}} -->
+                @if(userForm.controls['fullName'].errors?.['required']) {
+                <span>This is Required</span>
+                }
+              </div>
+              }
+            </div>
+            <div class="mb-3">
+              <label for="emailId" class="form-label">Email ID</label>
+              <input type="email" formControlName="emailId" class="form-control" id="emailId" placeholder="Enter Email">
+              @if (userForm.controls['emailId'].touched || userForm.controls['emailId'].dirty || isFormSubmited) {
+              <div class="text-danger">
+                <!-- -{{titleTem.errors| json}} -->
+                @if(userForm.controls['emailId'].errors?.['required']) {
+                <span>This is Required</span>
+                }
+              </div>
+              }
+            </div>
+            <div class="mb-3">
+              <label for="mobileNo" class="form-label">Mobile No</label>
+              <input type="text" formControlName="mobileNo" class="form-control" id="mobileNo"
+                placeholder="Enter Mobile Number">
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input type="password" formControlName="password" class="form-control" id="password"
+                placeholder="Enter Password">
+            </div>
+            ---{{userForm.controls['userId'].value}}
+            @if (userForm.controls['userId'].value == 0) {
+            <button type="button" (click)="onSaveUser()" class="btn btn-primary me-2">Save</button>
+            } @else {
+            <button type="button" (click)="onSaveUser()" class="btn btn-warning me-2">Update</button>
+            }
+
+
+            <button type="reset" class="btn btn-secondary" (click)="onClear()">Clear</button>
+          </form>
+        </div>
+      </div>
+    </div>
+     }
+   
+   
+
+  </div>
+</div>
+
